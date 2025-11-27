@@ -1,0 +1,67 @@
+{% extends "posts/base.html" %}
+{% block content %}
+
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+
+{% if post.image %}
+<img src="{{ post.image.url }}" class="post-image" alt="Post image">
+{% endif %}
+{% if post.video %}
+<video controls class="post-video">
+    <source src="{{ post.video.url }}">
+</video>
+{% endif %}
+
+<p class="card-author">By {{ post.author.username }} at {{ post.created_at }}</p>
+
+{% if user == post.author %}
+<form method="POST" action="{% url 'posts:post_delete' post.pk %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-sm">Delete Post</button>
+</form>
+{% endif %}
+
+<hr>
+<h4>Comments</h4>
+{% for comment in comments %}
+<div class="comment">
+    <strong>{{ comment.author.username }}</strong>: {{ comment.content }}
+    {% if user == comment.author %}
+        <a href="{% url 'posts:comment_delete' comment.pk %}" class="text-danger ms-2">Delete</a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <form method="POST" style="margin-top:5px;">
+        {% csrf_token %}
+        <input type="hidden" name="parent_id" value="{{ comment.pk }}">
+        <textarea name="content" rows="1" placeholder="Reply..." required></textarea>
+        <button type="submit" class="btn btn-sm btn-primary">Reply</button>
+    </form>
+    {% endif %}
+
+    {% for reply in comment.replies.all %}
+    <div class="comment ms-4">
+        <strong>{{ reply.author.username }}</strong>: {{ reply.content }}
+        {% if user == reply.author %}
+            <a href="{% url 'posts:comment_delete' reply.pk %}" class="text-danger ms-2">Delete</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% empty %}
+<p>No comments yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="content" class="form-control mb-2" placeholder="Add a comment" rows="2" required></textarea>
+    <input type="hidden" name="parent_id" value="">
+    <button type="submit" class="btn btn-primary">Comment</button>
+</form>
+{% else %}
+<p><a href="{% url 'accounts:login' %}">Login</a> to comment.</p>
+{% endif %}
+
+{% endblock %}

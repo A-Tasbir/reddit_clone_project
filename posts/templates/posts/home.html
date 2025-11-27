@@ -1,0 +1,31 @@
+{% extends "posts/base.html" %}
+{% block content %}
+<h2>All Posts</h2>
+{% if user.is_authenticated %}
+<a href="{% url 'posts:post_create' %}" class="btn btn-success mb-3">Create Post</a>
+{% endif %}
+
+{% for post in posts %}
+<div class="post-card">
+    <h5 class="card-title"><a href="{% url 'posts:post_detail' post.pk %}">{{ post.title }}</a></h5>
+    <p class="card-text">{{ post.content|truncatechars:150 }}</p>
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" class="post-image" alt="Post image">
+    {% endif %}
+    {% if post.video %}
+        <video controls class="post-video">
+            <source src="{{ post.video.url }}">
+        </video>
+    {% endif %}
+
+    <p class="card-author">By {{ post.author.username }} at {{ post.created_at }}</p>
+
+    {% if user == post.author %}
+        <a href="{% url 'posts:post_delete' post.pk %}" class="btn btn-danger btn-sm">Delete Post</a>
+    {% endif %}
+</div>
+{% empty %}
+<p>No posts yet.</p>
+{% endfor %}
+{% endblock %}

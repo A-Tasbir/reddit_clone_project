@@ -1,0 +1,22 @@
+{% extends "posts/base.html" %}
+
+
+{% block title %}Favorites | RedditClone{% endblock %}
+
+{% block content %}
+<h2>Your Favorites</h2>
+
+<div class="row">
+    {% for fav in favorites %}
+        <div class="col-md-4">
+            <div class="post-card">
+                <h3>{{ fav.post.title }}</h3>
+                <p>{{ fav.post.content|truncatechars:100 }}</p>
+                <p class="text-muted">By {{ fav.post.author.username }} on {{ fav.post.created_at|date:"M d, Y" }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>You have no favorite posts yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

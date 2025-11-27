@@ -1,0 +1,197 @@
+/* ==================== Global ==================== */
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #ff4500;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff784e;
+    text-decoration: none; /* no underline */
+}
+
+/* ==================== Navbar ==================== */
+.navbar {
+    background-color: #2a2a2a !important;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Brand button (RedditClone) */
+.navbar-brand {
+    background-color: #ff4500;
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+    background-color: #ff784e;
+    text-decoration: none !important;
+    transform: translateY(-2px);
+}
+
+/* Navbar links styled as buttons (Login/Register/Favorites/Logout) */
+.navbar-nav .nav-link {
+    background-color: #444;
+    color: #ffffff !important;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-left: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #ff4500 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: #ff784e !important;
+    color: #ffffff !important;
+}
+
+/* ==================== Post Cards ==================== */
+.post-card {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.85);
+}
+
+/* Post Title */
+.post-card .card-title a {
+    color: #ff4500 !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.post-card .card-title a:hover {
+    color: #ff784e !important;
+    text-decoration: none !important;
+}
+
+/* Post Content */
+.post-card .card-text {
+    color: #ffffff;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* Author / Timestamp */
+.post-card .card-author {
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* Media (images/videos) */
+.post-card img, .post-card video {
+    max-width: 100%;
+    margin-top: 12px;
+    border-radius: 8px;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.post-card img:hover, .post-card video:hover {
+    transform: scale(1.05); /* subtle zoom */
+}
+
+/* ==================== Buttons ==================== */
+.btn-primary, .btn-success {
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 6px 14px;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success:hover {
+    background-color: #28a745cc;
+}
+
+/* ==================== Comment Section ==================== */
+.comment {
+    background-color: #3a3a3a;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.comment strong {
+    color: #ff4500;
+}
+
+.comment p {
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Comment form inputs */
+form textarea, form input[type="text"], form input[type="file"] {
+    border-radius: 6px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+    width: 100%;
+    padding: 6px;
+    margin-top: 6px;
+}
+
+form button {
+    margin-top: 6px;
+}
+
+/* ==================== Footer ==================== */
+footer {
+    color: #aaa;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+    .post-card {
+        padding: 15px;
+    }
+
+    .post-card .card-title a {
+        font-size: 1.3rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 5px 10px;
+        margin-left: 4px;
+    }
+
+    .navbar-brand {
+        padding: 5px 10px;
+        font-size: 1.1rem;
+    }
+}
